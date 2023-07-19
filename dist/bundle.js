@@ -4,7 +4,9 @@ var LavoratoreAutonomo = /** @class */ (function () {
         this.redditoAnnuoLordo = redditoAnnuoLordo;
     }
     LavoratoreAutonomo.prototype.getUtileTasse = function () {
-        return this.redditoAnnuoLordo - this.getTasseInps() - this.getTasseIrpef();
+        var inpsSconto = (this.getTasseInps() * this.codRedd) / 100;
+        var irpefSconto = (this.getTasseIrpef() * this.codRedd) / 100;
+        return inpsSconto + irpefSconto;
     };
     LavoratoreAutonomo.prototype.getTasseInps = function () {
         return this.redditoAnnuoLordo * 0.23;
@@ -34,7 +36,7 @@ var LavoratoreAutonomo = /** @class */ (function () {
     };
     return LavoratoreAutonomo;
 }());
-var luigi = new LavoratoreAutonomo(1, 6000);
+var luigi = new LavoratoreAutonomo(5, 6000);
 console.log('-----Luigi----');
 console.log(luigi);
 console.log('Tasse Inps:', luigi.getTasseInps());
@@ -42,7 +44,7 @@ console.log('Tasse Irpef:', luigi.getTasseIrpef());
 console.log('Utile tasse:', luigi.getUtileTasse());
 console.log('Reddito annuo netto:', luigi.getRedditoAnnoNetto());
 console.log('===============================');
-var mario = new LavoratoreAutonomo(2, 370000);
+var mario = new LavoratoreAutonomo(1, 370000);
 console.log('-----mario----');
 console.log(mario);
 console.log('Tasse Inps:', mario.getTasseInps());

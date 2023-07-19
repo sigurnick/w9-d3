@@ -7,7 +7,9 @@ class LavoratoreAutonomo{
 
 
      getUtileTasse():number{
-        return this.redditoAnnuoLordo - this.getTasseInps() - this.getTasseIrpef()
+        let inpsSconto = (this.getTasseInps() * this.codRedd)/100 
+        let irpefSconto =  (this.getTasseIrpef() * this.codRedd) /100
+        return inpsSconto + irpefSconto
      }   
 
      getTasseInps():number{
@@ -45,7 +47,7 @@ class LavoratoreAutonomo{
 
 
 
-let luigi = new LavoratoreAutonomo(1,6000)
+let luigi = new LavoratoreAutonomo(5,6000)
 console.log('-----Luigi----');
 console.log(luigi);
 console.log('Tasse Inps:' ,luigi.getTasseInps());
@@ -56,7 +58,7 @@ console.log('Reddito annuo netto:', luigi.getRedditoAnnoNetto());
 console.log('===============================');
 
 
-let mario = new LavoratoreAutonomo(2,370000)
+let mario = new LavoratoreAutonomo(1,370000)
 console.log('-----mario----');
 console.log(mario);
 console.log('Tasse Inps:' ,mario.getTasseInps());
